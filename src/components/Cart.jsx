@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, cartTotal, removeItem, clear, precioTotal } = useContext(CartContext);
-
+console.log(cart.products);
   if (cartTotal() === 0) {
     return (
       <div className="container carritoVacio">
@@ -39,17 +39,17 @@ const Cart = () => {
               </tr>
             </thead>
             <tbody>
-              {cart.map(product => (
-                <tr key={product._id}>
+              {cart.products.map(item => (
+                <tr key={item._id}>
                   <td className="align-middle text-center"> 
                   <div className="d-flex align-items-center justify-content-center">
-                      <img src={product.thumbnail} alt={product.title} className="img-fluid" style={{ maxHeight: "100px" }}/>
+                      <img src={item.product.thumbnail} alt={item.product.title} className="img-fluid" style={{ maxHeight: "100px" }}/>
                   </div>
                   </td>
-                  <td className="align-middle">{product.name}</td>
-                  <td className="align-middle text-center">{product.quantity}</td>
-                  <td className="align-middle text-center">$ {product.quantity * product.price}</td>
-                  <td className="align-middle text-end"><Link onClick={() => removeItem(product._id)} title="Eliminar Producto">
+                  <td className="align-middle">{item.product.title}</td>
+                  <td className="align-middle text-center">{item.quantity}</td>
+                  <td className="align-middle text-center">$ {item.quantity * item.product.price}</td>
+                  <td className="align-middle text-end"><Link onClick={() => removeItem(item.product._id)} title="Eliminar Producto">
                     <i className="bi bi-trash3 cestoIcon"></i>
                   </Link></td>
                 </tr>

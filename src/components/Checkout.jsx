@@ -95,14 +95,12 @@ const Checkout = () => {
               </tr>
             </thead>
             <tbody>
-                {cart.map(product => (
-                  <tr key={product._id}>
-                    <div className="d-flex align-items-center justify-content-center">
-                    <td className="align-middle text-center"><img src={product.thumbnail} alt={product.title} className="img-fluid" style={{ maxHeight: "100px" }}/></td>
-                  </div>
-                    <td className="align-middle">{product.title}</td>
-                    <td className="align-middle text-center">{product.quantity}</td>
-                    <td className="align-middle text-center">$ {product.quantity * product.price}</td>
+                {cart.products.map(item => (
+                  <tr key={item.product._id}>
+                    <td className="align-middle text-center"><img src={item.product.thumbnail} alt={item.product.title} className="img-fluid" style={{ maxHeight: "100px" }}/></td>
+                    <td className="align-middle">{item.product.title}</td>
+                    <td className="align-middle text-center">{item.quantity}</td>
+                    <td className="align-middle text-center">$ {item.quantity * item.product.price}</td>
                   </tr>
                 ))}
                 <tr>

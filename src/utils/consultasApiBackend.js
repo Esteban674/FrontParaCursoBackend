@@ -82,3 +82,35 @@ export const addCartItem = async (cartId, productId, quantity) => {
     console.error('Error al agregar el producto:', error);
   }
 }
+
+//Eliminar un producto del carrito
+export const deleteCartItem = async (cartId, productId) => {
+  try {
+    await fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log('Producto eliminado correctamente');
+  } catch (error) {
+    console.error('Error al eliminar el producto:', error);
+  }
+}
+
+//Eliminar el carrito
+export const deleteCart = async (cartId) => {
+  try {
+    await fetch(`http://localhost:8080/api/carts/${cartId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log('Carrito eliminado correctamente');
+  } catch (error) {
+    console.error('Error al eliminar el carrito:', error);
+  }
+}
