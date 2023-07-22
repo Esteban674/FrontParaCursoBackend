@@ -1,4 +1,6 @@
 
+
+//--------Products--------//
 export const getProducts = async (category) => { 
   // const url = `https://backend-proyectofinal-production.up.railway.app/api/products?category=${category}`;
   if(category){
@@ -25,7 +27,7 @@ export const getProductById = async (id) => {
 };
 
 
-//Carts
+//---------Carts---------//
 
 //Obtener un carrito
 export const getCart = async (cartId) => {
@@ -114,3 +116,24 @@ export const deleteCart = async (cartId) => {
     console.error('Error al eliminar el carrito:', error);
   }
 }
+
+//Comprar carrito
+export const purchaseCart = async (cartId) => { 
+  try {
+    const response = await fetch(`http://localhost:8080/api/carts/${cartId}/purchase`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    console.log('Carrito comprado correctamente');
+    return data;
+  } catch (error) {
+    console.error('Error al comprar el carrito:', error);
+  }
+}
+
+
+//---------User---------//
+

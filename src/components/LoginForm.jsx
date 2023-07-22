@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { UserContext } from './context/UserContext';
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {login} = useContext(UserContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,18 +24,18 @@ function LoginForm() {
         },
         body: JSON.stringify(requestData)
       });
-      
+
 
       if (response.ok) {
         console.log('Login successful');
-        setEmail('');
-        setPassword('');
         const data = await response.json();
-        const {user} = data.payload;
+        const user = data.payload;
         login(user);
         // Guardar el usuario en sessionStorage
         sessionStorage.setItem('user', JSON.stringify(user));
-        // window.location.replace('/');
+        setEmail('');
+        setPassword('');
+        navigate('/');
       } else {
         console.error('Login failed');
       }
@@ -72,7 +73,7 @@ function LoginForm() {
           />
         </div>
         <div className="form-group col-md-6 my-3">
-          <button type="submit" className="btn btn-primary me-2"><NavLink className="nav-link" to="/">Login</NavLink></button>
+          <button type="submit" className="btn btn-primary me-2">Login</button>
           <a href="http://localhost:8080/mail" className="btn btn-danger me-2">Restablecer contraseña</a>
           <a href="http://localhost:8080/session/github" className="btn btn-secondary"><i className="bi bi-github me-1"></i>Login with Github</a>
         </div>

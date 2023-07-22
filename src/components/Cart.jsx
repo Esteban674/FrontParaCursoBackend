@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, cartTotal, removeItem, clear, precioTotal } = useContext(CartContext);
-console.log(cart.products);
+
   if (cartTotal() === 0) {
     return (
       <div className="container carritoVacio">

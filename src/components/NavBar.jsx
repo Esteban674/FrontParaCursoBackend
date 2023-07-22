@@ -2,8 +2,10 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import CartWidget from './CartWidget'
 import LoginBoton from './LoginBoton'
+import LogoutBoton from './LogoutBoton';
 
 const NavBar = () => {
+
   return (
     <div className="mb-4 nav-bar">
       <div className="row m-0">
@@ -24,8 +26,11 @@ const NavBar = () => {
             </div>
           </nav>
         </div>
-        <div className="col-md-3 d-flex align-items-center justify-content-end">
+        <div className="col-md-2 d-flex align-items-center justify-content-end">
           <LoginBoton />
+        </div>
+        <div className="col-md-1 d-flex align-items-center justify-content-end">
+          <LogoutBoton />
         </div>
         <div className="col-md-1 d-flex align-items-center justify-content-end pe-5">
           <CartWidget />
