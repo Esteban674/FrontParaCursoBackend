@@ -32,7 +32,7 @@ export const getProductById = async (id) => {
 
 //Obtener un carrito
 export const getCart = async (cartId) => {
-  const url = `/api/carts/${cartId}`;
+  const url = `${APIURL}/api/carts/${cartId}`;
   const response = await fetch(url);
   const data = await response.json();
   return data;
