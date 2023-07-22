@@ -1,16 +1,17 @@
 
+const APIURL = 'https://backend-proyectofinal-production.up.railway.app';
+// const APIURL = 'http://localhost:8080';
 
 //--------Products--------//
 export const getProducts = async (category) => { 
-  // const url = `https://backend-proyectofinal-production.up.railway.app/api/products?category=${category}`;
   if(category){
-    const url = `http://localhost:8080/api/products?category=${category}`;
+    const url = `${APIURL}/api/products?category=${category}`;
     const response = await fetch(url);
     const data = await response.json();
     const products = data.payload;
     return products;
   } else {
-  const url = `http://localhost:8080/api/products`;
+  const url = `${APIURL}/api/products`;
   const response = await fetch(url);
 
   const data = await response.json();
@@ -20,7 +21,7 @@ export const getProducts = async (category) => {
 };
 
 export const getProductById = async (id) => {
-  const url = `http://localhost:8080/api/products/${id}`;
+  const url = `${APIURL}/api/products/${id}`;
   const response = await fetch(url);
   const product = await response.json();
   return product;
@@ -31,7 +32,7 @@ export const getProductById = async (id) => {
 
 //Obtener un carrito
 export const getCart = async (cartId) => {
-  const url = `http://localhost:8080/api/carts/${cartId}`;
+  const url = `/api/carts/${cartId}`;
   const response = await fetch(url);
   const data = await response.json();
   return data;
@@ -39,7 +40,7 @@ export const getCart = async (cartId) => {
 
 //Crear un carrito
 export const addCart = async (cart) => {
-  const url = `http://localhost:8080/api/carts`;
+  const url = `${APIURL}/api/carts`;
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(cart),
@@ -54,7 +55,7 @@ export const addCart = async (cart) => {
 //Actualizar cantidad en el carrito
 export const updateCartItem = async (cartId, productId, quantity) => {
   try {
-    await fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {
+    await fetch(`${APIURL}/api/carts/${cartId}/product/${productId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -71,7 +72,7 @@ export const updateCartItem = async (cartId, productId, quantity) => {
 //Agregar un producto al carrito
 export const addCartItem = async (cartId, productId, quantity) => {
   try {
-    await fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {
+    await fetch(`${APIURL}/api/carts/${cartId}/product/${productId}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -88,7 +89,7 @@ export const addCartItem = async (cartId, productId, quantity) => {
 //Eliminar un producto del carrito
 export const deleteCartItem = async (cartId, productId) => {
   try {
-    await fetch(`http://localhost:8080/api/carts/${cartId}/product/${productId}`, {
+    await fetch(`${APIURL}/api/carts/${cartId}/product/${productId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -104,7 +105,7 @@ export const deleteCartItem = async (cartId, productId) => {
 //Eliminar el carrito
 export const deleteCart = async (cartId) => {
   try {
-    await fetch(`http://localhost:8080/api/carts/${cartId}`, {
+    await fetch(`${APIURL}/api/carts/${cartId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -120,7 +121,7 @@ export const deleteCart = async (cartId) => {
 //Comprar carrito
 export const purchaseCart = async (cartId) => { 
   try {
-    const response = await fetch(`http://localhost:8080/api/carts/${cartId}/purchase`, {
+    const response = await fetch(`${APIURL}/api/carts/${cartId}/purchase`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -135,5 +136,4 @@ export const purchaseCart = async (cartId) => {
 }
 
 
-//---------User---------//
 

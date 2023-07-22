@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import { UserContext } from './context/UserContext';
 import { useNavigate } from 'react-router-dom';
 
+const APIURL = 'https://backend-proyectofinal-production.up.railway.app';
+
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +19,7 @@ function LoginForm() {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/api/session/login', {
+      const response = await fetch(`${APIURL}/api/session/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -74,8 +76,8 @@ function LoginForm() {
         </div>
         <div className="form-group col-md-6 my-3">
           <button type="submit" className="btn btn-primary me-2">Login</button>
-          <a href="http://localhost:8080/mail" className="btn btn-danger me-2">Restablecer contraseña</a>
-          <a href="http://localhost:8080/session/github" className="btn btn-secondary"><i className="bi bi-github me-1"></i>Login with Github</a>
+          <a href="https://backend-proyectofinal-production.up.railway.app/mail" className="btn btn-danger me-2">Restablecer contraseña</a>
+          <a href="https://backend-proyectofinal-production.up.railway.app/session/github" className="btn btn-secondary"><i className="bi bi-github me-1"></i>Login with Github</a>
         </div>
       </form>
     </div>
